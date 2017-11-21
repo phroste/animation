@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Animation</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	
+</head>
+<body>
+<div id="parent">	
+	<div id="myContainer">
+		<div id="myAnimation"></div>
+	</div>
+</div>
+
+	<div id="controllerbuttons">
+		<div id="dpad">
+			<img src="images/dpad.png" width=100 height=100>
+		</div>
+	<div id="button">
+		<button onclick="move()">START</button>
+	</div>
+		<div id="button1">
+			<div></div>
+		</div>
+
+		<div id="button2">
+			<div></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		//this is the 1st audio file 
+		var audio = new Audio("audio/audio2.mp3"); 
+		//this is the gif that is retrieved and replaces the myContainer div
+		var gif = document.getElementById('myContainer');
+		function move(){
+			//autoplays audio when button is clicked
+			audio.play();
+			var elem = document.getElementById('myAnimation');
+			var pos = 0;
+			//variable toppos -> value for top position
+			//variable leftpos -> value for left position	
+			var toppos = 0;
+			var leftpos = 0;
+			var leftpos1 = 100;
+			var leftpos2 = 200;
+			var leftpos3= 280;
+
+			//store setInterval in a variable --> calls frame function every 10 milliseconds 
+			var id = setInterval(frame,10);
+				//function frame moves image
+				function frame(){
+					pos++;
+					//between 0 and 100 increment toppos by 1
+					//image moves down 100px
+					if(pos <= 100){
+						toppos++;
+						elem.style.top = toppos+'px';
+					}
+					//at 101px, image is swapped
+					else if(pos==101){
+						elem.style = "background-image:url('images/right.gif')"
+						leftpos1++;
+						elem.style.top = leftpos1+'px';
+					}
+					//between 101 and 200 increment leftpos by 1
+					//image moves right 99px
+					else if(pos <= 200){
+						leftpos++;
+						elem.style.left = leftpos+'px';	
+					}
+					//at 201px, image is swapped
+					else if(pos==201){
+						elem.style="background-image:url('images/top.gif')"
+						elem.style.left = leftpos1+'px';
+					}
+					//between 201 and 380 increment toppos by 1
+					//image moves down 179px
+					else if(pos <= 380){
+						toppos++;
+						elem.style.top = toppos+'px';
+					}
+					//at 381px, image is swapped
+					else if(pos==381){
+						elem.style="background-image:url('images/right.gif')"
+						elem.style.top = toppos+'px';
+					}
+					//between 381 and 400 increment leftpos by 1
+					//image moves right 19px
+					else if(pos <= 410){
+						leftpos++;
+						elem.style.left = leftpos+'px';
+					}
+					//at 411px, image is swapped
+					else if(pos==411){
+						elem.style="background-image:url('images/bottom.gif')"
+						elem.style.left = leftpos+'px';
+					}
+					//between 411 and 520 decrement toppos by 1
+					//image moves up 89px
+					else if(pos <= 520){
+						toppos--;
+						elem.style.top = toppos+'px';
+					}
+					//at 521px, image is swapped
+					else if(pos==521){
+						elem.style="background-image:url('images/right.gif')"
+						elem.style.top = toppos+'px';
+					}
+					//between 521 and 670 increment leftpos by 1
+					//image moves right 149px
+					else if(pos <= 670){
+						leftpos++;
+						elem.style.left = leftpos+'px';
+					}
+					//at 671, image is swapped
+					else if(pos==671){
+						elem.style="background-image:url('images/top.gif')"
+						elem.style.left = leftpos3+'px';
+					}
+
+					else if(pos <= 870){
+						toppos++;
+						elem.style.top = toppos+'px';
+					}
+
+					//after pos is greater than 870 clear interval id
+					else{
+						clearInterval(id);
+						//after interval is cleared, window alert pops up
+						window.alert('GET READY TO BATTLE!');
+						//after window alert is closed, html document is overwritten and replaced with gif
+						gif.style.backgroundImage = "url('images/chandler1.gif')";
+						elem.style.display = "none" ;
+					}
+				}
+		}
+	</script>
+</body>
+</html>
